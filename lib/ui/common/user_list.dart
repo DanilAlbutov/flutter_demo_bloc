@@ -19,7 +19,7 @@ class UsersList extends StatelessWidget {
         itemCount: users.length,
         itemBuilder: (context, index) => SizedBox(
           height: 100,
-          child: UserCard(user: users[index]),
+          child: UserCard.buildFromModel(users[index]),
         ),
       ),
     );

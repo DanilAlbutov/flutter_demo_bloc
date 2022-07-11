@@ -4,12 +4,25 @@ import 'package:flutter/material.dart';
 import '../../data/models/user_card_model.dart';
 
 class UserCard extends StatelessWidget {
-  const UserCard({
+  UserCard({
     Key? key,
-    required this.user,
+    required this.firstName,
+    required this.secondName,
+    required this.userName,
+    required this.imageUrl,
   }) : super(key: key);
 
-  final UserCardModel user;
+  String firstName;
+  String secondName;
+  String userName;
+  String imageUrl;
+
+  factory UserCard.buildFromModel(UserCardModel model) => UserCard(
+        firstName: model.firstName,
+        secondName: model.secondName,
+        userName: model.userName,
+        imageUrl: model.avatarUrl,
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -19,15 +32,12 @@ class UserCard extends StatelessWidget {
           const SizedBox(
             width: 20,
           ),
-          const Icon(
-            Icons.ac_unit,
-            size: 60,
-          ),
+          Image.network(imageUrl),
           const SizedBox(
             width: 20,
           ),
           Text(
-            user.userName,
+            userName,
             style: const TextStyle(
               fontSize: 20,
               fontFamily: 'Arial Black',
