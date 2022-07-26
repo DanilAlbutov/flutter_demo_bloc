@@ -7,4 +7,7 @@ abstract class HomeEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class GetDataEvent extends HomeEvent {}
+class GetDataEvent extends HomeEvent {
+  final int count;
+  const GetDataEvent(this.count);
+}

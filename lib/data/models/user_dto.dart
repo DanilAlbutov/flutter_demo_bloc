@@ -10,6 +10,7 @@ class UserDTO {
     this.secondName,
     this.userName,
     this.avatarUrl,
+    this.email,
   );
 
   factory UserDTO.fromJson(Map<String, dynamic> json) =>
@@ -28,6 +29,9 @@ class UserDTO {
 
   @JsonKey(name: 'avatar')
   final String avatarUrl;
+
+  @JsonKey(name: 'email')
+  final String email;
 }
 
 extension UserDTOToDomain on UserDTO {
@@ -38,6 +42,7 @@ extension UserDTOToDomain on UserDTO {
       secondName,
       userName,
       avatarUrl,
+      email,
     );
   }
 }

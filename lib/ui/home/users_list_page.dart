@@ -17,10 +17,7 @@ class UsersList extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         scrollDirection: Axis.vertical,
         itemCount: users.length,
-        itemBuilder: (context, index) => SizedBox(
-          height: 100,
-          child: UserCard.buildFromModel(users[index]),
-        ),
+        itemBuilder: (context, index) => UserCard.buildFromModel(users[index]),
       ),
     );
   }

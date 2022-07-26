@@ -5,6 +5,7 @@ class UserCardModel {
     this.secondName,
     this.userName,
     this.avatarUrl,
+    this.email,
   );
 
   final int id;
@@ -12,4 +13,5 @@ class UserCardModel {
   final String secondName;
   final String userName;
   final String avatarUrl;
+  final String email;
 }
