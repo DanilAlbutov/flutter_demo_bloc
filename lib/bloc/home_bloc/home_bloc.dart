@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:flutter_demo_bloc/data/repositories/home_repo.dart';
 
@@ -19,7 +20,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final int dataCount = 0;
   HomeBloc() : super(HomeInitial()) {
     on<GetDataEvent>(getData);
-    // on<TextChangedEvent>((event, emit) event.count);
+    on<SetInitialEvent>((event, emit) => emit(HomeInitial()));
   }
 
   Future<void> getData(GetDataEvent event, Emitter<HomeState> emit) async {

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_demo_bloc/bloc/home_bloc/home_bloc.dart';
-
 import '../../data/models/user_card_model.dart';
-import '../detail/detail_page.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
-@immutable
+import '../screeens/detail/detail_page.dart';
+
 class UserCard extends StatelessWidget {
   UserCard({
     Key? key,
@@ -22,6 +21,7 @@ class UserCard extends StatelessWidget {
   String userName;
   String imageUrl;
   String email;
+
   factory UserCard.buildFromModel(UserCardModel model) => UserCard(
         firstName: model.firstName,
         secondName: model.secondName,

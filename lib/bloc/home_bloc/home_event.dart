@@ -11,3 +11,5 @@ class GetDataEvent extends HomeEvent {
   final int count;
   const GetDataEvent(this.count);
 }
+
+class SetInitialEvent extends HomeEvent {}
