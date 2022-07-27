@@ -1,34 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_demo_bloc/bloc/home_bloc/home_bloc.dart';
-import '../../data/models/user_card_model.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_demo_bloc/ui/common/user_avatar.dart';
+import '../../data/models/user_model.dart';
 
 import '../screeens/detail/detail_page.dart';
 
 class UserCard extends StatelessWidget {
   UserCard({
     Key? key,
-    required this.firstName,
-    required this.secondName,
-    required this.userName,
-    required this.imageUrl,
-    required this.email,
+    required this.user,
   }) : super(key: key);
 
-  String firstName;
-  String secondName;
-  String userName;
-  String imageUrl;
-  String email;
-
-  factory UserCard.buildFromModel(UserCardModel model) => UserCard(
-        firstName: model.firstName,
-        secondName: model.secondName,
-        userName: model.userName,
-        imageUrl: model.avatarUrl,
-        email: model.email,
-      );
+  UserModel user;
 
   @override
   Widget build(BuildContext context) {
@@ -36,9 +18,8 @@ class UserCard extends StatelessWidget {
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => BlocProvider.value(
-              value: HomeBloc(),
-              child: DetailPage(),
+            builder: (context) => DetailPage(
+              user: user,
             ),
           ),
         );
@@ -51,34 +32,13 @@ class UserCard extends StatelessWidget {
               width: 20,
             ),
             Expanded(
-              flex: 1,
-              child: CachedNetworkImage(
-                imageUrl: imageUrl,
-                progressIndicatorBuilder: (context, url, downloadProgress) =>
-                    Padding(
-                  padding: const EdgeInsets.all(30),
-                  child: SizedBox(
-                    height: 50,
-                    width: 50,
-                    child: CircularProgressIndicator(
-                      strokeWidth: 6,
-                      value: downloadProgress.progress,
-                    ),
+                flex: 1,
+                child: Hero(
+                  tag: 'avatar${user.id}',
+                  child: UserAvatar(
+                    url: user.avatarUrl,
                   ),
-                ),
-                errorWidget: (context, url, error) => const Icon(Icons.error),
-                imageBuilder: (context, imageProvider) => Container(
-                  height: 100,
-                  width: 100,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: imageProvider,
-                      fit: BoxFit.fitHeight,
-                    ),
-                  ),
-                ),
-              ),
-            ),
+                )),
             const SizedBox(
               width: 10,
             ),
@@ -87,7 +47,7 @@ class UserCard extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    '$firstName $secondName',
+                    '${user.firstName} ${user.secondName}',
                     style: const TextStyle(
                       fontSize: 20,
                       fontFamily: 'Arial Black',
@@ -99,11 +59,17 @@ class UserCard extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      Text('nickname: '),
+                      const Text('nickname: '),
                       const SizedBox(
                         height: 6,
                       ),
-                      Text(userName),
+                      Flexible(
+                        child: Text(
+                          user.email,
+                          textAlign: TextAlign.right,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
                     ],
                   ),
                   Row(
@@ -118,7 +84,7 @@ class UserCard extends StatelessWidget {
                       ),
                       Flexible(
                         child: Text(
-                          email,
+                          user.email,
                           textAlign: TextAlign.right,
                           overflow: TextOverflow.ellipsis,
                         ),

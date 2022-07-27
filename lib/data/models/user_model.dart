@@ -1,5 +1,5 @@
-class UserCardModel {
-  UserCardModel(
+class UserModel {
+  UserModel(
     this.id,
     this.firstName,
     this.secondName,

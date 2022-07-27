@@ -1,13 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_demo_bloc/data/constants/user_query.dart';
-import 'package:flutter_demo_bloc/data/models/user_card_model.dart';
+import 'package:flutter_demo_bloc/data/models/user_model.dart';
 import 'package:flutter_demo_bloc/data/models/user_dto.dart';
 
 class HomeRepo {
   final Dio _dio;
   HomeRepo(this._dio);
 
-  Future<List<UserCardModel>?> getUsers({required int userCount}) async {
+  Future<List<UserModel>?> getUsers({required int userCount}) async {
     try {
       String url = '${UserQuery.baseUrl}${UserQuery.apiPath}?size=$userCount';
 
@@ -18,7 +18,7 @@ class HomeRepo {
       final List<UserDTO> usersDTO =
           jsonList.map((e) => UserDTO.fromJson(e)).toList();
 
-      final List<UserCardModel> usersCardModel =
+      final List<UserModel> usersCardModel =
           usersDTO.map((e) => e.toDomain()).toList();
 
       return usersCardModel;

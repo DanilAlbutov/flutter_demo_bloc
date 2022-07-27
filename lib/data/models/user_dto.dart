@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:flutter_demo_bloc/data/models/user_card_model.dart';
+import 'package:flutter_demo_bloc/data/models/user_model.dart';
 part 'user_dto.g.dart';
 
 @JsonSerializable()
@@ -35,8 +35,8 @@ class UserDTO {
 }
 
 extension UserDTOToDomain on UserDTO {
-  UserCardModel toDomain() {
-    return UserCardModel(
+  UserModel toDomain() {
+    return UserModel(
       id,
       firstName,
       secondName,

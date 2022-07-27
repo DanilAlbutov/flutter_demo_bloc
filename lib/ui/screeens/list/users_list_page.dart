@@ -31,7 +31,7 @@ class _UsersListState extends State<UsersList> {
                 scrollDirection: Axis.vertical,
                 itemCount: state.users.length,
                 itemBuilder: (context, index) =>
-                    UserCard.buildFromModel(state.users[index]),
+                    UserCard(user: state.users[index]),
               );
             } else if (state is HomeInitial) {
               return const Center(
