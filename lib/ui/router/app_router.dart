@@ -23,7 +23,7 @@ class AppRouter {
           builder: (_) => BlocProvider.value(
             value: _homeBloc,
             child: const UsersList(
-              title: 'List',
+              title: 'Users',
             ),
           ),
         );

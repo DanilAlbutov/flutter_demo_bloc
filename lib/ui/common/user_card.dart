@@ -65,7 +65,7 @@ class UserCard extends StatelessWidget {
                       ),
                       Flexible(
                         child: Text(
-                          user.email,
+                          user.userName,
                           textAlign: TextAlign.right,
                           overflow: TextOverflow.ellipsis,
                         ),

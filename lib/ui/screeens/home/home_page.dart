@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text('Ошибка при загрузке данных.'),
+                        const Text('Ошибка при загрузке данных.'),
                         const SizedBox(
                           height: 20,
                         ),
@@ -87,9 +87,8 @@ class _HomePageState extends State<HomePage> {
             height: 20,
           ),
           ElevatedButton(
-            onPressed: (() => context
-                .read<HomeBloc>()
-                .add(GetDataEvent(int.parse(countTextEditingController.text)))),
+            onPressed: (() => context.read<HomeBloc>().add(GetDataEvent(
+                int.tryParse(countTextEditingController.text) ?? 0))),
             child: const Text("Load data"),
           )
         ],
