@@ -11,6 +11,7 @@ class HomeInitial extends HomeState {}
 
 class HomeLoading extends HomeState {}
 
+@immutable
 class HomeLoaded extends HomeState {
   HomeLoaded(this.users);
   var users;
